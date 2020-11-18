@@ -10,7 +10,7 @@ const corsOptions = {
     origin: 'https://alexeisamuta.github.io/portfolio/',
     optionsSuccessStatus: 200
 }
-
+app.use(cors(corsOptions))
 
 app.use(bodyParser.urlencoded({extended: false}))
 
@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-app.post('/sendMessage', cors(corsOptions), async (req, res) => {
+app.post('/sendMessage', async (req, res) => {
 
     let {name, email, message} = req.body
 
