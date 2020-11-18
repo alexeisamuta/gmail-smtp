@@ -10,8 +10,8 @@ app.use(bodyParser.urlencoded({extended: false}))
 
 app.use(bodyParser.json())
 
-const smtp_login = process.env.SMTP_LOGIN || 'alexeisamuta@gmail.com'
-const smtp_password = process.env.SMTP_PASSWORD || '725z79z32z'
+const smtp_login = process.env.SMTP_LOGIN || '---'
+const smtp_password = process.env.SMTP_PASSWORD || '---'
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
