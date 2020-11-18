@@ -6,7 +6,7 @@ const app = express()
 const port = process.env.PORT || 3010
 
 app.use(cors())
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({extended: false}))
 
 app.use(bodyParser.json())
 
@@ -17,7 +17,7 @@ const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
         user: smtp_login,
-        pass: smtp_password // naturally, replace both with your real credentials or an application-specific password
+        pass: smtp_password
     }
 });
 
@@ -25,20 +25,20 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-app.post('/sendMessage', async  (req, res) => {
+app.post('/sendMessage', async (req, res) => {
 
     let {name, email, message} = req.body
 
     let info = await transporter.sendMail({
-        from: "HR WANTS ME", // sender address
-        to: "alexeisamuta@gmail.com", // list of receivers
-        subject: "HR WANTS ME", // Subject line
-        // text: "", // plain text body
+        from: "HR WANTS ME",
+        to: "alexeisamuta@gmail.com",
+        subject: "HR WANTS ME",
+        // text: "",
         html: `<div>
             <div>name: ${name}</div>
             <div>email: ${email}</div> 
             <div>${message}</div>
-                </div>`, // html body
+            </div>`,
     });
     res.send('Ok!!')
 })
