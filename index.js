@@ -3,9 +3,13 @@ const nodemailer = require('nodemailer');
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const app = express()
-app.use(cors())
 
 const port = process.env.PORT || 3010
+
+const corsOptions = {
+    origin: 'https://alexeisamuta.github.io/',
+    optionsSuccessStatus: 200
+}
 
 
 app.use(bodyParser.urlencoded({extended: false}))
@@ -27,7 +31,7 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-app.post('/sendMessage', async (req, res) => {
+app.post('/sendMessage', cors(corsOptions), async (req, res) => {
 
     let {name, email, message} = req.body
 
