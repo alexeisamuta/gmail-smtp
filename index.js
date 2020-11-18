@@ -6,14 +6,9 @@ const app = express()
 
 const port = process.env.PORT || 3010
 
-const corsOptions = {
-    origin: 'https://alexeisamuta.github.io/portfolio/',
-    optionsSuccessStatus: 200
-}
-app.use(cors(corsOptions))
+app.use(cors())
 
 app.use(bodyParser.urlencoded({extended: false}))
-
 app.use(bodyParser.json())
 
 const smtp_login = process.env.SMTP_LOGIN || '---'
@@ -46,6 +41,8 @@ app.post('/sendMessage', async (req, res) => {
             <div>${message}</div>
             </div>`,
     });
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
     res.send('Ok!!')
 })
 
