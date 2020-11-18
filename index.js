@@ -5,11 +5,9 @@ const bodyParser = require('body-parser')
 const app = express()
 const port = process.env.PORT || 3010
 
-
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 
-// parse application/json
 app.use(bodyParser.json())
 
 const smtp_login = process.env.SMTP_LOGIN || '---'
@@ -26,19 +24,19 @@ const transporter = nodemailer.createTransport({
 app.get('/', (req, res) => {
     res.send('Hello World!')
 })
-app.post('/sendMessage', async  (req, res) => {
-    let info = await transporter.sendMail({
-        from: "HR WANTS ME", // sender address
-        to: "pacanenok95@gmail.com", // list of receivers
-        subject: "HR WANTS ME", // Subject line
-        text: "Если тебе пришло и ты читаешь это, у тебя все получится)!!!!!", // plain text body
-        html: "<b>Привет</b> Если тебе пришло и ты читаешь это, у тебя все получится)", // html body
-    });
 
+app.post('/sendMessage', async  (req, res) => {
+    const {name, email, message} = req.body
+
+    let info = await transporter.sendMail({
+        from: name, // sender address
+        to: "alexeisamuta@gmail.com", // list of receivers
+        subject: email, // Subject line
+        text: "Если тебе пришло и ты читаешь это, у тебя все получится)!!!!!", // plain text body
+        html: `<div><b>Привет</b> ${message}</div>`, // html body
+    });
     res.send('Ok!!')
 })
-
-
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
