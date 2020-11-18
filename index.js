@@ -32,7 +32,6 @@ app.post('/sendMessage', async (req, res) => {
         from: "HR WANTS ME",
         to: "alexeisamuta@gmail.com",
         subject: "HR WANTS ME",
-        // text: "",
         html: `<div>
             <div>name: ${name}</div>
             <div>email: ${email}</div> 
