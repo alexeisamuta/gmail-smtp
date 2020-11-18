@@ -10,8 +10,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(bodyParser.json())
 
-const smtp_login = process.env.SMTP_LOGIN || '---'
-const smtp_password = process.env.SMTP_PASSWORD || '---'
+const smtp_login = process.env.SMTP_LOGIN || 'alexeisamuta@gmail.com'
+const smtp_password = process.env.SMTP_PASSWORD || '725z79z32z'
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -27,14 +27,18 @@ app.get('/', (req, res) => {
 
 app.post('/sendMessage', async  (req, res) => {
 
-    const {name, email, message} = req.body
+    let {name, email, message} = req.body
 
     let info = await transporter.sendMail({
-        from: name, // sender address
+        from: "HR WANTS ME", // sender address
         to: "alexeisamuta@gmail.com", // list of receivers
-        subject: email, // Subject line
-        text: "Если тебе пришло и ты читаешь это, у тебя все получится)!!!!!", // plain text body
-        html: `<div><b>Привет</b> ${message}</div>`, // html body
+        subject: "HR WANTS ME", // Subject line
+        // text: "", // plain text body
+        html: `<div>
+            <div>name: ${name}</div>
+            <div>email: ${email}</div> 
+            <div>${message}</div>
+                </div>`, // html body
     });
     res.send('Ok!!')
 })
