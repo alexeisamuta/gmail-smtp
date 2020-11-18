@@ -29,16 +29,14 @@ app.post('/sendMessage', async  (req, res) => {
 
     const {name, email, message} = req.body
 
-    // let info = await transporter.sendMail({
-    //     from: name, // sender address
-    //     to: "alexeisamuta@gmail.com", // list of receivers
-    //     subject: email, // Subject line
-    //     text: "Если тебе пришло и ты читаешь это, у тебя все получится)!!!!!", // plain text body
-    //     html: `<div><b>Привет</b> ${message}</div>`, // html body
-    // });
+    let info = await transporter.sendMail({
+        from: name, // sender address
+        to: "alexeisamuta@gmail.com", // list of receivers
+        subject: email, // Subject line
+        text: "Если тебе пришло и ты читаешь это, у тебя все получится)!!!!!", // plain text body
+        html: `<div><b>Привет</b> ${message}</div>`, // html body
+    });
     res.send('Ok!!')
-    res.send(name)
-    res.send(email)
 })
 
 app.listen(port, () => {
