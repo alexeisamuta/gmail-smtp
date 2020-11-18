@@ -7,7 +7,7 @@ const app = express()
 const port = process.env.PORT || 3010
 
 const corsOptions = {
-    origin: 'https://alexeisamuta.github.io/',
+    origin: 'https://alexeisamuta.github.io/portfolio/',
     optionsSuccessStatus: 200
 }
 
