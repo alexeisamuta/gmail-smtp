@@ -6,6 +6,11 @@ const app = express()
 
 const port = process.env.PORT || 3010
 
+const smtp_login = process.env.SMTP_LOGIN || "---"
+const smtp_password = process.env.SMTP_PASSWORD || "---"
+
+
+
 app.use(cors())
 
 app.use(bodyParser.urlencoded({extended: false}))
@@ -15,8 +20,8 @@ app.use(bodyParser.json())
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: "alexeisamuta@gmail.com",
-        pass: "725z79z32z"
+        user: smtp_login,
+        pass: smtp_password
     }
 });
 
