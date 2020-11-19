@@ -29,6 +29,12 @@ app.get('/', (req, res) => {
 
 app.post('/sendMessage', async (req, res) => {
 
+    res.setHeader("Access-Control-Allow-Origin", "*")
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Max-Age", "1800");
+    res.setHeader("Access-Control-Allow-Headers", "content-type");
+    res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
+
     let {name, email, message} = req.body
 
     let info = await transporter.sendMail({
@@ -41,6 +47,7 @@ app.post('/sendMessage', async (req, res) => {
             <div>${message}</div>
             </div>`,
     });
+
     res.send('Ok!!')
 })
 
