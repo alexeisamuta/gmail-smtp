@@ -6,8 +6,8 @@ const app = express()
 
 
 
-const smtp_login = process.env.SMTP_LOGIN || "---"
-const smtp_password = process.env.SMTP_PASSWORD || "---"
+const smtp_login = process.env.SMTP_LOGIN || "alexeisamuta@gmail.com"
+const smtp_password = process.env.SMTP_PASSWORD || "725z79z32z"
 
 app.use(cors())
 
@@ -34,7 +34,7 @@ app.post('/send', async function (req, res) {
 
     let info = await transporter.sendMail({
         from: "Message with portfolio",
-        to: "alexeisamuta@gmail.com",
+        to: "pacanenok95@gmail.com",
         subject: "Message with portfolio",
         html: `<div>
             <div>name: ${name}</div>
