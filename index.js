@@ -1,6 +1,6 @@
 const express = require('express')
-const nodemailer = require('nodemailer');
 const cors = require('cors')
+const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser')
 const app = express()
 
@@ -34,11 +34,11 @@ app.post('/send', async function (req, res) {
         from: "Message with portfolio",
         to: "alexeisamuta@gmail.com",
         subject: "Message with portfolio",
-        html: `<div>
-<div>name: ${name}</div>
-<div>email: ${email}</div> 
-<div>${message}</div>
-</div>`,
+        html:`<div>
+                <div>name: ${name}</div>
+                <div>email: ${email}</div> 
+                <div>${message}</div>
+             </div>`,
     });
     res.send('Ok!!')
 })
