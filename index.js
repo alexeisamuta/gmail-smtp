@@ -4,13 +4,12 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const app = express()
 
+const port = process.env.PORT || 3010
 
-
-const smtp_login = process.env.SMTP_LOGIN || "alexeisamuta@gmail.com"
-const smtp_password = process.env.SMTP_PASSWORD || "725z79z32z"
+const smtp_login = process.env.SMTP_LOGIN || "---"
+const smtp_password = process.env.SMTP_PASSWORD || "---"
 
 app.use(cors())
-
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
@@ -34,7 +33,7 @@ app.post('/send', async function (req, res) {
 
     let info = await transporter.sendMail({
         from: "Message with portfolio",
-        to: "pacanenok95@gmail.com",
+        to: "alexeisamuta@gmail.com",
         subject: "Message with portfolio",
         html: `<div>
             <div>name: ${name}</div>
@@ -45,7 +44,24 @@ app.post('/send', async function (req, res) {
 
     res.send('Ok!!')
 })
-const port = process.env.PORT || 3010
+
+app.post("/sendd", async (req, res) => {
+
+    let {name, email, message} = req.body
+
+    let info = await transporter.sendMail({
+        from: "Message with portfolio",
+        to: "alexeisamuta@gmail.com",
+        subject: "Message with portfolio",
+        html: `<div>
+            <div>name: ${name}</div>
+            <div>email: ${email}</div> 
+            <div>${message}</div>
+            </div>`,
+    });
+    res.send('Ok!!')
+
+})
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
