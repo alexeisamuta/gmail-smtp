@@ -18,8 +18,10 @@ const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
         type: "login",
-        user: process.env.SMTP_LOGIN || SMTP_LOGIN,
-        pass: process.env.SMTP_PASSWORD || SMTP_PASSWORD
+        // user: process.env.SMTP_LOGIN || SMTP_LOGIN,
+        // pass: process.env.SMTP_PASSWORD || SMTP_PASSWORD,
+        user: process.env.SMTP_LOGIN2 || SMTP_LOGIN2,
+        pass: process.env.SMTP_PASSWORD2 || SMTP_PASSWORD2
     }
 });
 
